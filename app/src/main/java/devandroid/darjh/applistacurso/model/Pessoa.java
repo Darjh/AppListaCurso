@@ -1,5 +1,7 @@
 package devandroid.darjh.applistacurso.model;
 
+import androidx.annotation.NonNull;
+
 public class Pessoa {
 
     //Construtor

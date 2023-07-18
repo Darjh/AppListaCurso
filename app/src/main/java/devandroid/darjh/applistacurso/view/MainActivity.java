@@ -3,6 +3,7 @@ package devandroid.darjh.applistacurso.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import devandroid.darjh.applistacurso.R;
 import devandroid.darjh.applistacurso.model.Pessoa;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         outraPessoa.setSobreNome("Zhora");
         outraPessoa.setCursoDesejado("Java");
         outraPessoa.setTelContato("41-99836-9387");
-
+/*
         dadosPessoa = "Primeiro nome: ";
         dadosPessoa += pessoa.getPriNome();
         dadosPessoa += " Sobrenome: ";
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         dadosPessoa += " Telefone de contato: ";
         dadosPessoa += pessoa.getTelContato();
 
-
         dadosOutraPessoa = "Primeiro nome: ";
         dadosOutraPessoa += outraPessoa.getPriNome();
         dadosOutraPessoa += " Sobrenome: ";
@@ -51,5 +51,14 @@ public class MainActivity extends AppCompatActivity {
         dadosOutraPessoa += outraPessoa.getCursoDesejado();
         dadosOutraPessoa += " Telefone de contato: ";
         dadosOutraPessoa += outraPessoa.getTelContato();
+  */
+
+        Log.i(
+                "POOAndroid","Objeto pessoa: " + pessoa.toString()
+        );
+        Log.i(
+                "POOAndroid","Objeto outraPessoa: " + outraPessoa.toString()
+        );
+
     }
 }
