@@ -16,6 +16,7 @@ public class Pessoa {
     public Pessoa() {
 
     }
+
     public String getPriNome() {
         return priNome;
     }
@@ -49,7 +50,7 @@ public class Pessoa {
     }
 
     //To String - Para textos - Para Strings de caracteres
-
+    @NonNull
     @Override
     public String toString() {
         return "Pessoa{" +

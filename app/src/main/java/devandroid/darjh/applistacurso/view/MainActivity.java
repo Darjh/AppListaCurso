@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import devandroid.darjh.applistacurso.R;
 import devandroid.darjh.applistacurso.model.Pessoa;
@@ -12,8 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
     Pessoa pessoa;
     Pessoa outraPessoa;
-    String dadosPessoa;
-    String dadosOutraPessoa;
+
+    EditText editNome;
+    EditText editSobreNome;
+    EditText editNomeCurso;
+    EditText editTelefone;
+    Button btnLimpar;
+    Button btnSalvar;
+    Button btnFinalizar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,43 +30,54 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         pessoa = new Pessoa();
-        //Atribuir conteúdo, dados, valores para o objeto
-        //conforme o seu Modelo, template.
-        pessoa.setPriNome("Marco");
-        pessoa.setSobreNome("Maddo");
-        pessoa.setCursoDesejado("Android");
-        pessoa.setTelContato("41-99836-9387");
 
         outraPessoa = new Pessoa();
         outraPessoa.setPriNome("Darjh");
         outraPessoa.setSobreNome("Zhora");
         outraPessoa.setCursoDesejado("Java");
         outraPessoa.setTelContato("41-99836-9387");
-/*
-        dadosPessoa = "Primeiro nome: ";
-        dadosPessoa += pessoa.getPriNome();
-        dadosPessoa += " Sobrenome: ";
-        dadosPessoa += pessoa.getSobreNome();
-        dadosPessoa += " Curso desejado: ";
-        dadosPessoa += pessoa.getCursoDesejado();
-        dadosPessoa += " Telefone de contato: ";
-        dadosPessoa += pessoa.getTelContato();
 
-        dadosOutraPessoa = "Primeiro nome: ";
-        dadosOutraPessoa += outraPessoa.getPriNome();
-        dadosOutraPessoa += " Sobrenome: ";
-        dadosOutraPessoa += outraPessoa.getSobreNome();
-        dadosOutraPessoa += " Curso desejado: ";
-        dadosOutraPessoa += outraPessoa.getCursoDesejado();
-        dadosOutraPessoa += " Telefone de contato: ";
-        dadosOutraPessoa += outraPessoa.getTelContato();
-  */
+        editNome = findViewById(R.id.editNome);
+        editSobreNome = findViewById(R.id.editSobreNome);
+        editNomeCurso = findViewById(R.id.editNomeCurso);
+        editTelefone = findViewById(R.id.editTelefone);
+
+        btnLimpar = findViewById(R.id.btnLimpar);
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnFinalizar = findViewById(R.id.btnFinalizar);
+
+        editNome.setText(pessoa.getPriNome());
+        editSobreNome.setText(pessoa.getSobreNome());
+        editNomeCurso.setText(pessoa.getCursoDesejado());
+        editTelefone.setText(pessoa.getTelContato());
+
+        btnLimpar.setOnClickListener(view -> {
+            editNome.setText(" ");
+            editSobreNome.setText(" ");
+            editNomeCurso.setText(" ");
+            editTelefone.setText(" ");
+        });
+
+        btnFinalizar.setOnClickListener(view -> {
+            Toast.makeText(MainActivity.this, "Volte sempre", Toast.LENGTH_LONG).show();
+            finish();
+        });
+
+        btnSalvar.setOnClickListener(view -> {
+
+            pessoa.setPriNome(editNome.getText().toString());
+            pessoa.setSobreNome(editSobreNome.getText().toString());
+            pessoa.setCursoDesejado(editNomeCurso.getText().toString());
+            pessoa.setTelContato(editTelefone.getText().toString());
+
+            Toast.makeText(MainActivity.this, "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
+        });
 
         Log.i(
-                "POOAndroid","Objeto pessoa: " + pessoa.toString()
+                "POOAndroid", "Objeto pessoa: " + pessoa.toString()
         );
         Log.i(
-                "POOAndroid","Objeto outraPessoa: " + outraPessoa.toString()
+                "POOAndroid", "Objeto outraPessoa: " + outraPessoa.toString()
         );
 
     }
