@@ -1,5 +1,5 @@
 package devandroid.darjh.applistacurso.controller;
 
-public class CursoController {
+public class PessoaController {
 
 }
