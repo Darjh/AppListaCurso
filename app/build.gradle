@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'devandroid.darjh.applistacurso'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "devandroid.darjh.applistacurso"
         minSdk 26
-        targetSdk 34
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
