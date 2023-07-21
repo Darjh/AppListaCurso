@@ -16,6 +16,7 @@ import devandroid.darjh.applistacurso.model.Pessoa;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
+    SharedPreferences.Editor listaVip;
     public static final String NOME_PREFERENCES = "pref_listavip";
     PessoaController controller;
 
@@ -35,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        SharedPreferences.Editor listaVip = preferences.edit();
+        listaVip = preferences.edit();
 
         controller = new PessoaController();
         controller.toString();
 
         pessoa = new Pessoa();
-        pessoa.setPriNome(preferences.getString("primeiroNome", " "));
-        pessoa.setSobreNome(preferences.getString("sobreNome", " "));
-        pessoa.setCursoDesejado(preferences.getString("nomeCurso", " "));
-        pessoa.setTelContato(preferences.getString("telefone", " "));
+        pessoa.setPriNome(preferences.getString("primeiroNome", ""));
+        pessoa.setSobreNome(preferences.getString("sobreNome", ""));
+        pessoa.setCursoDesejado(preferences.getString("nomeCurso", ""));
+        pessoa.setTelContato(preferences.getString("telefone", ""));
 
         editNome = findViewById(R.id.editNome);
         editSobreNome = findViewById(R.id.editSobreNome);
@@ -61,10 +62,13 @@ public class MainActivity extends AppCompatActivity {
         btnFinalizar = findViewById(R.id.btnFinalizar);
 
         btnLimpar.setOnClickListener(view -> {
-            editNome.setText(" ");
-            editSobreNome.setText(" ");
-            editNomeCurso.setText(" ");
-            editTelefone.setText(" ");
+            editNome.setText("");
+            editSobreNome.setText("");
+            editNomeCurso.setText("");
+            editTelefone.setText("");
+
+            listaVip.clear();
+            listaVip.apply();
         });
 
         btnFinalizar.setOnClickListener(view -> {
