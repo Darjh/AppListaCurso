@@ -1,13 +1,12 @@
 package devandroid.darjh.applistacurso.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import devandroid.darjh.applistacurso.R;
 import devandroid.darjh.applistacurso.controller.PessoaController;
@@ -15,9 +14,6 @@ import devandroid.darjh.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences preferences;
-    SharedPreferences.Editor listaVip;
-    public static final String NOME_PREFERENCES = "pref_listavip";
     PessoaController controller;
 
     Pessoa pessoa;
@@ -35,17 +31,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        listaVip = preferences.edit();
-
-        controller = new PessoaController();
+        controller = new PessoaController(MainActivity.this);
         controller.toString();
 
         pessoa = new Pessoa();
-        pessoa.setPriNome(preferences.getString("primeiroNome", ""));
-        pessoa.setSobreNome(preferences.getString("sobreNome", ""));
-        pessoa.setCursoDesejado(preferences.getString("nomeCurso", ""));
-        pessoa.setTelContato(preferences.getString("telefone", ""));
+        controller.buscar(pessoa);
 
         editNome = findViewById(R.id.editNome);
         editSobreNome = findViewById(R.id.editSobreNome);
@@ -67,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
             editNomeCurso.setText("");
             editTelefone.setText("");
 
-            listaVip.clear();
-            listaVip.apply();
+            controller.limpar();
         });
 
         btnFinalizar.setOnClickListener(view -> {
@@ -84,13 +73,6 @@ public class MainActivity extends AppCompatActivity {
             pessoa.setTelContato(editTelefone.getText().toString());
 
             Toast.makeText(MainActivity.this, "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
-
-            listaVip.putString("primeiroNome", pessoa.getPriNome());
-            listaVip.putString("sobreNome", pessoa.getSobreNome());
-            listaVip.putString("nomeCurso", pessoa.getCursoDesejado());
-            listaVip.putString("telefone", pessoa.getTelContato());
-
-            listaVip.apply();
 
             controller.salvar(pessoa);
 
