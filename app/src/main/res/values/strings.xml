@@ -9,4 +9,5 @@
     <string name="btn_salvar">Salvar</string>
     <string name="btn_finalizar">Finalizar</string>
     <string name="text_info">Lista VIP para curso de Android 2023. Profº Maddo.</string>
+    <string name="selecione_curso">Selecione um curso:</string>
 </resources>
